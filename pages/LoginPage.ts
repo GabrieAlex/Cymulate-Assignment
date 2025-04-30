@@ -6,64 +6,66 @@ export default class LoginPage  {
 
     private usernameField: Locator;
     private passwordField: Locator;
-    private loginButton: Locator;
     private signUpButton: Locator;
-    private signWithSSOButton: Locator;
-    private backToLogin: Locator;
-    private missingPassword: Locator;
+    private filterbarButton: Locator;
+    private typsButton: Locator;
+    private advancedButton: Locator;
+    private applyFiltersButton: Locator;
+    private attackID1: Locator;
+    private attackID2: Locator;
+    private attackID3: Locator;
+
+
+    // private signWithSSOButton: Locator;
+    // private backToLogin: Locator;
+    // private missingPassword: Locator;
     
-    // private default_username = process.env.STANDARD_USER as string;
-    // private default_password = process.env.CORRECT_PASSWORD as string;
 
     
     constructor(protected page: Page) {
         //super(page);
         this.usernameField = this.page.locator('input[test-id=email]');
         this.passwordField = this.page.locator('input[test-id=password]');
-        this.loginButton = this.page.getByRole('link', { name: 'Log In' });
         this.signUpButton = this.page.getByRole('button', { name: 'Sign in', exact: true });
-        this.signWithSSOButton =  this.page.getByRole('button', { name: 'Sign in with SSO', exact:true });
-        this.backToLogin =  this.page.getByRole('button', { name: 'Back to login', exact:true });
-        this.missingPassword = this.page.getByRole('link',{name: 'Forgot my password'});
-
-        //this.errorMessage = this.page.locator('[data-test="error"]')
-    }
-
-    public async loginToApp(){
-        //go to url
-        await this.page.goto(ApplicationURL.Base_URL);
-        //move to login page
-        //await this.page.getByRole('link', { name: 'Log In' }).click();
-        await this.loginButton.click();
-        //verify title of sign up page
-         expect(this.page.getByRole('heading', { name: 'Log in to your account' })).toContainText;
+        this.filterbarButton= this.page.locator('[data-test-id="filter-bar"] #icon_');
+        this.typsButton= this.page.locator('div').filter({ hasText: /^Type$/ }).nth(3) 
+        this.advancedButton = this.page.getByRole('button', { name: 'Advanced Scenarios' });
+        this.applyFiltersButton = this.page.getByRole('button', { name: 'Apply Filters' });
+        this.attackID1 =this.page.getByText('6810766a2218750c2c26c12f');
+        this.attackID1 =this.page.getByText('6810766a2218750c2c26c12f');
+        this.attackID3= this.page.getByText('680e108ac3a52e2800717448');
+        
 
     }
+
 
     public async signIn (){
+        await this.page.goto(ApplicationURL.Base_URL);
         //Fill user name 
-        await this.usernameField.fill('user name');
-        //await this.page.locator('input[test-id=email]').fill('asda');
-
-        //expect 
-        //await expect (this.page.locator('input[test-id=email]')).toContainText('user name');
+        await this.usernameField.fill('candidate_user@cymulate1.com');
 
         // Fill password
-        await this.passwordField.fill('password');  
-        //await this.page.locator('input[test-id=password]').fill('asda');
+        await this.passwordField.fill('ZzAa!@#$43212');  
 
         //Press sign up button
         await this.signUpButton.click();
-        //await this.page.getByRole('button', { name: 'Sign in', exact: true }).click();
 
     }
-    public async signWithSSO(){
-        //this.page.getByRole('button', { name: 'Sign in with SSO' });
-        await this.signWithSSOButton.click();
-        await this.backToLogin.click();
+    public async filterTest(){
+        await this.page.goto(ApplicationURL.ActivityLog_URL);
+        await this.filterbarButton.click();
+        await this.typsButton.click();
+        await this.advancedButton.click();
+        await this.applyFiltersButton.click();
         
     }
-    public async forgatPassword(){
-        await this.missingPassword.click();
+
+   public async validateAttackID(){
+        
+        console.log(this.attackID1);
+        console.log(this.attackID2);
+        console.log(this.attackID3);
+
+        
     }
 }
