@@ -15,10 +15,6 @@ export default class LoginPage  {
     private attackID2: Locator;
     private attackID3: Locator;
 
-
-
-    
-
     
     constructor(protected page: Page) {
         this.usernameField = this.page.locator('input[test-id=email]');
@@ -49,7 +45,9 @@ export default class LoginPage  {
 
     }
     public async filterTest(){
+        await this.page.waitForTimeout(5000);
         await this.page.goto(ApplicationURL.ActivityLog_URL);
+        await this.page.waitForTimeout(5000);
         await this.filterbarButton.click();
         await this.typsButton.click();
         await this.advancedButton.click();
@@ -59,6 +57,8 @@ export default class LoginPage  {
 
    public async validateAttackID(){
         
+        await this.page.waitForTimeout(5000);
+
         console.log(this.attackID1);
         console.log(this.attackID2);
         console.log(this.attackID3);
