@@ -16,14 +16,11 @@ export default class LoginPage  {
     private attackID3: Locator;
 
 
-    // private signWithSSOButton: Locator;
-    // private backToLogin: Locator;
-    // private missingPassword: Locator;
+
     
 
     
     constructor(protected page: Page) {
-        //super(page);
         this.usernameField = this.page.locator('input[test-id=email]');
         this.passwordField = this.page.locator('input[test-id=password]');
         this.signUpButton = this.page.getByRole('button', { name: 'Sign in', exact: true });
