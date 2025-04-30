@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import LoginPage from '../Pages/LoginPage';
+import LoginPage from '../pages/LoginPage';
 
     test('sanity test', async ({ page }) => {
     //   await page.goto('https://cymulate.com/');
