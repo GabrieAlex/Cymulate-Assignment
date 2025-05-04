@@ -18,7 +18,7 @@ export default class ActivityLogPage {
 
     public async filterByType(){
             await this.page.waitForTimeout(5000);
-            await this.page.goto(ApplicationURL.ActivityLog_URL, { waitUntil: 'load' });
+            await this.page.goto(ApplicationURL.ActivityLog_URL, { waitUntil: 'load',timeout:10000});
             await this.filterbarButton.waitFor();
             await this.filterbarButton.click();
             await this.typsButton.click();

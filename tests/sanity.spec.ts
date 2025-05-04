@@ -1,22 +1,26 @@
 import { test, expect } from '@playwright/test';
 import LoginPage from '../pages/LoginPage';
-import ApplicationURL from "../helpers/ApplicationURL";
 import ActivityLogPage from '../pages/ActivityLogPage';
-import ValidateDataPAge from '../pages/ValidateDataPage';
+import { AttackPage } from '../pages/attackPage';
+import ApplicationUsers from '../helpers/ApplicationUsers';
 
+    test.setTimeout(60000);
 
  
     test(' sanity test', async ({ page }) => {
 
         const loginPage = new LoginPage(page);
         const activityLogPage = new ActivityLogPage(page);
-        const validateDataPage = new ValidateDataPAge(page);
+        const attackPage = new AttackPage(page);
         
-        await loginPage.signIn();     
+        await loginPage.signIn(ApplicationUsers.username, ApplicationUsers.password);     
         await activityLogPage.filterByType();
-        await validateDataPage.validateAttackID();
-
-    });
     
-
+        
+        // Wait for attack IDs to appear
+        await attackPage.waitForAttackIds();
+        await attackPage.getUniqueAttackIds();
+        await attackPage.logAttackIds();
+        await attackPage.assertAtLeastOneAttackId();
+    });
     
