@@ -14,9 +14,9 @@ export default class LoginPage  {
         this.signUpButton = this.page.getByRole('button', { name: 'Sign in', exact: true });
     }
 
-    public async signIn (username: string, password:string){
+    public async signIn (username: string, password:string, url:string){
         //Go to URL
-        await this.page.goto(ApplicationURL.Base_URL);
+        await this.page.goto(url);
 
         //Fill user name 
         await this.usernameField.fill(username);
