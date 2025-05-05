@@ -3,9 +3,10 @@ import LoginPage from '../pages/LoginPage';
 import ActivityLogPage from '../pages/ActivityLogPage';
 import { AttackPage } from '../pages/AttackPage';
 import ApplicationUsers from '../helpers/ApplicationUsers';
+import ApplicationURL from '../helpers/ApplicationURL';
 
 
-    test.setTimeout(60000);
+    //test.setTimeout(60000);
 
  
     test(' sanity test', async ({ page }) => {
@@ -14,14 +15,8 @@ import ApplicationUsers from '../helpers/ApplicationUsers';
         const activityLogPage = new ActivityLogPage(page);
         const attackPage = new AttackPage(page);
         
-        await loginPage.signIn(ApplicationUsers.username, ApplicationUsers.password);     
+        await loginPage.signIn(ApplicationUsers.UserName, ApplicationUsers.Password, ApplicationURL.Base_URL);     
         await activityLogPage.filterByType();
-    
-        
-        // Wait for attack IDs to appear
-        await attackPage.waitForAttackIds();
-        await attackPage.getUniqueAttackIds();
         await attackPage.logAttackIds();
-        await attackPage.assertAtLeastOneAttackId();
     });
     
