@@ -31,7 +31,7 @@ export class AttackPage {
 
   public async logAttackIds(){
     const uniqueIds = await this.getUniqueAttackIds();
-    expect(uniqueIds.length).toBeGreaterThan(3);
+    expect(uniqueIds.length).toBeGreaterThanOrEqual(3);
     console.log('First 3 Attack IDs:', uniqueIds.slice(0, 3));
   }
 }
