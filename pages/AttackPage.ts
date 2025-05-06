@@ -14,7 +14,7 @@ export class AttackPage {
   public async getUniqueAttackIds() {
 
     await this.assessmentIdElements.first().waitFor();
-   // await this.assessmentIdElements.last().scrollIntoViewIfNeeded();
+    await this.assessmentIdElements.last().scrollIntoViewIfNeeded();
     await this.page.waitForTimeout(2000);
 
     const uniqueIds = new Set<string>();
