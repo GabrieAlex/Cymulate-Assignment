@@ -14,7 +14,7 @@ export class AttackPage {
   public async getUniqueAttackIds() {
 
     await this.assessmentIdElements.first().waitFor();
-    await this.assessmentIdElements.last().scrollIntoViewIfNeeded();
+   // await this.assessmentIdElements.last().scrollIntoViewIfNeeded();
     await this.page.waitForTimeout(2000);
 
     const uniqueIds = new Set<string>();
@@ -31,6 +31,7 @@ export class AttackPage {
 
   public async logAttackIds(){
     const uniqueIds = await this.getUniqueAttackIds();
+    expect(uniqueIds.length).toBeGreaterThan(3);
     console.log('First 3 Attack IDs:', uniqueIds.slice(0, 3));
   }
 }
