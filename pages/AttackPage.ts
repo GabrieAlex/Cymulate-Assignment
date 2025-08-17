@@ -15,6 +15,7 @@ export default class AttackPage {
 
     await this.assessmentIdElements.first().waitFor();
     await this.assessmentIdElements.last().scrollIntoViewIfNeeded();
+    await this.page.waitForTimeout(2000);
     await this.assessmentIdElements.last().waitFor({ state: 'visible' });
 
     const uniqueIds = new Set<string>();
