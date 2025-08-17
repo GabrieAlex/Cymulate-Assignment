@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 import LoginPage from '../pages/LoginPage';
 import ActivityLogPage from '../pages/ActivityLogPage';
-import { AttackPage } from '../pages/AttackPage';
 import ApplicationUsers from '../helpers/ApplicationUsers';
 import ApplicationURL from '../helpers/ApplicationURL';
+import AttackPage from '../pages/AttackPage';
 
 
     //test.setTimeout(60000);

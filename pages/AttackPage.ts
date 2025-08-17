@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { Console } from 'console';
 
-export class AttackPage {
+export default class AttackPage {
 
   private assessmentIdElements: Locator;
  
@@ -15,7 +15,7 @@ export class AttackPage {
 
     await this.assessmentIdElements.first().waitFor();
     await this.assessmentIdElements.last().scrollIntoViewIfNeeded();
-    await this.page.waitForTimeout(2000);
+    await this.assessmentIdElements.last().waitFor({ state: 'visible' });
 
     const uniqueIds = new Set<string>();
     const count = await this.assessmentIdElements.count();
@@ -23,7 +23,7 @@ export class AttackPage {
     for (let i = 0; i < count; i++) {
       const id = await this.assessmentIdElements.nth(i).textContent();
       if (id && id.trim()) {
-        uniqueIds.add(id.trim());
+        uniqueIds.add(id.trim());      
       }
     }
     return Array.from(uniqueIds);
